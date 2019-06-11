@@ -1,24 +1,31 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { View, StyleSheet, ViewStyle, TextInput, Button } from "react-native";
 
-export interface UserInputProps {
-    placeName: string,
-    setPlaceName: (newName: string) => void,
-    onPlaceSubmit: () => void
+export interface PlaceInputProps {
+    onPlaceSubmit: (placeName: string) => void
 };
 
-export const UserInput: FunctionComponent<UserInputProps> = (props: UserInputProps) => {
+export const PlaceInput: FunctionComponent<PlaceInputProps> = (props: PlaceInputProps) => {
+    const [placeName, setPlaceName] = useState("");
+
+    const submitPlace = () => {
+        if (placeName.trim() !== "") {
+            props.onPlaceSubmit(placeName);
+            setPlaceName("");
+        }
+    };
+
     return (
         <View style={styles.inputContainer}>
             <TextInput
                 style={styles.placeInput}
                 placeholder="An awesome place"
-                value={props.placeName}
-                onChangeText={props.setPlaceName} />
+                value={placeName}
+                onChangeText={setPlaceName} />
             <Button
                 style={styles.placeButton}
                 title="Add"
-                onPress={props.onPlaceSubmit} />
+                onPress={submitPlace} />
         </View>
     );
 };

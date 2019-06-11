@@ -8,27 +8,23 @@
  * @format
  */
 
-import React, { Component, useState } from 'react';
-import { StyleSheet, Text, View, ViewStyle, TextInput, Alert, Button } from 'react-native';
-import { ListItem } from './src/components/ListItem/ListItem';
+import React, { useState, FunctionComponent } from 'react';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import { List } from './src/components/List/List';
-import { UserInput } from './src/components/UserInput/UserInput';
+import { PlaceInput } from './src/components/PlaceInput/PlaceInput';
 
 interface Props { }
 
-const App = (props: Props) => {
-  const [placeName, setPlaceName] = useState("");
+const App: FunctionComponent<Props> = (props: Props) => {
   const [places, setPlaces] = useState([] as string[]);
 
-  const placeSubmitHandler = () => {
-    if(placeName.trim() !== "") {
-      setPlaces([...places, placeName]);
-    }
+  const onPlaceSubmit = (placeName: string) => {
+    setPlaces([...places, placeName]);
   };
 
   return (
     <View style={styles.container}>
-      <UserInput placeName={placeName} setPlaceName={setPlaceName} onPlaceSubmit={placeSubmitHandler}/>
+      <PlaceInput onPlaceSubmit={onPlaceSubmit} />
       <List items={places} />
     </View>
   );
