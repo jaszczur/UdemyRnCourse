@@ -9,8 +9,9 @@ export const PlaceInput: FunctionComponent<PlaceInputProps> = (props: PlaceInput
     const [placeName, setPlaceName] = useState("");
 
     const submitPlace = () => {
-        if (placeName.trim() !== "") {
-            props.onPlaceSubmit(placeName);
+        const trimmedPlaceName = placeName.trim();
+        if (trimmedPlaceName !== "") {
+            props.onPlaceSubmit(trimmedPlaceName);
             setPlaceName("");
         }
     };
@@ -21,9 +22,9 @@ export const PlaceInput: FunctionComponent<PlaceInputProps> = (props: PlaceInput
                 style={styles.placeInput}
                 placeholder="An awesome place"
                 value={placeName}
-                onChangeText={setPlaceName} />
+                onChangeText={setPlaceName} 
+                onSubmitEditing={submitPlace} />
             <Button
-                style={styles.placeButton}
                 title="Add"
                 onPress={submitPlace} />
         </View>

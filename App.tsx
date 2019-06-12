@@ -10,7 +10,7 @@
 
 import React, { useState, FunctionComponent } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import { List } from './src/components/List/List';
+import { PlaceList } from './src/components/PlaceList/PlaceList';
 import { PlaceInput } from './src/components/PlaceInput/PlaceInput';
 
 interface Props { }
@@ -18,14 +18,18 @@ interface Props { }
 const App: FunctionComponent<Props> = (props: Props) => {
   const [places, setPlaces] = useState([] as string[]);
 
-  const onPlaceSubmit = (placeName: string) => {
+  const handlePlaceSubmit = (placeName: string) => {
     setPlaces([...places, placeName]);
+  };
+
+  const handleItemDeleted = (placeIndex: number) => {
+    setPlaces(places.filter((place: string, idx: number) => idx !== placeIndex));
   };
 
   return (
     <View style={styles.container}>
-      <PlaceInput onPlaceSubmit={onPlaceSubmit} />
-      <List items={places} />
+      <PlaceInput onPlaceSubmit={handlePlaceSubmit} />
+      <PlaceList items={places} onItemDeleted={handleItemDeleted} />
     </View>
   );
 };

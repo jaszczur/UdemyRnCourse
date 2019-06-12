@@ -1,14 +1,17 @@
 import React, { FunctionComponent } from "react";
-import { View, Text, StyleSheet, ViewStyle } from "react-native";
+import { View, Text, StyleSheet, ViewStyle, TouchableHighlight, TouchableWithoutFeedback, TouchableOpacity, GestureResponderEvent } from "react-native";
 
 export interface ListItemProps {
-    placeName: string
+    placeName: string,
+    onPress: (event: GestureResponderEvent) => void
 };
 
 export const ListItem: FunctionComponent<ListItemProps> = (props: ListItemProps) => (
-    <View style={styles.listItem}>
-        <Text>{props.placeName}</Text>
-    </View>
+    <TouchableOpacity onPress={props.onPress}>
+        <View style={styles.listItem}>
+            <Text>{props.placeName}</Text>
+        </View>
+    </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
