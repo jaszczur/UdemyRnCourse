@@ -5,7 +5,7 @@ import { Place } from "../../model";
 
 export interface PlaceListProps {
     items: Place[];
-    onItemDeleted: (place: Place) => void;
+    onItemPressed: (place: Place) => void;
 };
 
 export const PlaceList: FunctionComponent<PlaceListProps> = (props: PlaceListProps) => {
@@ -14,8 +14,8 @@ export const PlaceList: FunctionComponent<PlaceListProps> = (props: PlaceListPro
             data={props.items}
             renderItem={(info) => (
                 <ListItem
-                    placeName={info.item.name}
-                    onPress={() => props.onItemDeleted(info.item)} />
+                    place={info.item}
+                    onPress={() => props.onItemPressed(info.item)} />
             )}
         />
     );
