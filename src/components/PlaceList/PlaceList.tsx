@@ -1,22 +1,23 @@
 import React, { FunctionComponent } from "react";
-import { View, Text, StyleSheet, ViewStyle, Alert } from "react-native";
+import { ScrollView, StyleSheet, FlatList } from "react-native";
 import { ListItem } from "../ListItem/ListItem";
+import { Place } from "../../model";
 
 export interface PlaceListProps {
-    items: string[];
-    onItemDeleted: (index: number) => void;
+    items: Place[];
+    onItemDeleted: (place: Place) => void;
 };
 
 export const PlaceList: FunctionComponent<PlaceListProps> = (props: PlaceListProps) => {
-    const itemsOutput = props.items.map((item, idx) =>
-        <ListItem
-            key={idx}
-            placeName={item}
-            onPress={() => props.onItemDeleted(idx)} />);
     return (
-        <View style={styles.listContainer}>
-            {itemsOutput}
-        </View>
+        <FlatList style={styles.listContainer}
+            data={props.items}
+            renderItem={(info) => (
+                <ListItem
+                    placeName={info.item.name}
+                    onPress={() => props.onItemDeleted(info.item)} />
+            )}
+        />
     );
 };
 

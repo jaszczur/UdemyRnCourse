@@ -12,18 +12,19 @@ import React, { useState, FunctionComponent } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import { PlaceList } from './src/components/PlaceList/PlaceList';
 import { PlaceInput } from './src/components/PlaceInput/PlaceInput';
+import { Place } from './src/model';
 
 interface Props { }
 
 const App: FunctionComponent<Props> = (props: Props) => {
-  const [places, setPlaces] = useState([] as string[]);
+  const [places, setPlaces] = useState([] as Place[]);
 
   const handlePlaceSubmit = (placeName: string) => {
-    setPlaces([...places, placeName]);
+    setPlaces([...places, {key: Math.random().toString(), name: placeName}]);
   };
 
-  const handleItemDeleted = (placeIndex: number) => {
-    setPlaces(places.filter((place: string, idx: number) => idx !== placeIndex));
+  const handleItemDeleted = (placeToDelete: Place) => {
+    setPlaces(places.filter(place => place.key !== placeToDelete.key));
   };
 
   return (
