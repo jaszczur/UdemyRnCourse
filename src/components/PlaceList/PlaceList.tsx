@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { ScrollView, StyleSheet, FlatList } from "react-native";
 import { ListItem } from "../ListItem/ListItem";
-import { Place } from "../../model";
+import { Place } from "../../store/model";
 
 export interface PlaceListProps {
     items: Place[];

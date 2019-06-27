@@ -8,39 +8,42 @@
  * @format
  */
 
-import React, { useState, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import { PlaceList } from './src/components/PlaceList/PlaceList';
-import { PlaceInput } from './src/components/PlaceInput/PlaceInput';
-import { Place } from './src/model';
-import placeImage from './src/assets/amazing04.jpg';
-import { PlaceDetails, OptionalPlace } from './src/components/PlaceDetails/PlaceDetails';
+import { PlaceList } from './components/PlaceList/PlaceList';
+import { PlaceInput } from './components/PlaceInput/PlaceInput';
+import { Place,  ApplicationState } from './store/model';
+import placeImage from './assets/amazing04.jpg';
+import { PlaceDetails } from './components/PlaceDetails/PlaceDetails';
+import { useSelector, useDispatch } from "react-redux";
+import { ApplicationActionType, addPlace, selectPlace, deleteSelectedPlace, deselectPlace } from './store/actions';
+import { Dispatch } from 'redux';
 
 interface Props { }
 
 const App: FunctionComponent<Props> = (props: Props) => {
-  const [places, setPlaces] = useState([] as Place[]);
-  const [selectedPlace, setSelectedPlace] = useState(null as OptionalPlace);
+  const dispatch: Dispatch<ApplicationActionType> = useDispatch();
+  const { places, selectedPlace } = useSelector((state: ApplicationState) => state.places);
 
   const handlePlaceSubmit = (placeName: string) => {
-    setPlaces([...places, {
-      key: Math.random().toString(), 
+    const newPlace = {
+      key: Math.random().toString(),
       name: placeName,
       image: placeImage
-    }]);
+    };
+    dispatch(addPlace(newPlace));
   };
 
   const handleItemPressed = (place: Place) => {
-    setSelectedPlace(place);
+    dispatch(selectPlace(place.key));
   };
 
   const handleItemDeleted = (place: Place) => {
-    setPlaces(places.filter(p => place.key !== p.key));
-    setSelectedPlace(null);
+    dispatch(deleteSelectedPlace());
   };
 
   const closeDetailsModal = () => {
-    setSelectedPlace(null);
+    dispatch(deselectPlace());
   };
 
   return (

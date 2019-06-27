@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { View, Text, StyleSheet, ViewStyle, TouchableHighlight, TouchableWithoutFeedback, TouchableOpacity, GestureResponderEvent, Image, ImageStyle } from "react-native";
-import { Place } from "../../model";
+import { Place } from "../../store/model";
 
 export interface ListItemProps {
     place: Place,

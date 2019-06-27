@@ -1,8 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { View, Text, StyleSheet, ViewStyle, TouchableHighlight, TouchableWithoutFeedback, TouchableOpacity, GestureResponderEvent, Image, ImageStyle, Modal, Button, TextStyle } from "react-native";
-import { Place } from "../../model";
-
-export type OptionalPlace = Place | null;
+import { Place, OptionalPlace } from "../../store/model";
 
 export interface PlaceDetailsProps {
     place: OptionalPlace,
