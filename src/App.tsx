@@ -38,7 +38,7 @@ const App: FunctionComponent<Props> = (props: Props) => {
     dispatch(selectPlace(place.key));
   };
 
-  const handleItemDeleted = (place: Place) => {
+  const handleItemDeleted = () => {
     dispatch(deleteSelectedPlace());
   };
 

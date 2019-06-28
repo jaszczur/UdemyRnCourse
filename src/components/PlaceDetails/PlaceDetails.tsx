@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { View, Text, StyleSheet, ViewStyle, TouchableHighlight, TouchableWithoutFeedback, TouchableOpacity, GestureResponderEvent, Image, ImageStyle, Modal, Button, TextStyle } from "react-native";
+import { View, Text, StyleSheet, ViewStyle, TouchableOpacity, Image, ImageStyle, Modal, Button, TextStyle } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
 import { Place, OptionalPlace } from "../../store/model";
 
 export interface PlaceDetailsProps {
@@ -25,7 +26,11 @@ export const PlaceDetails: FunctionComponent<PlaceDetailsProps> =
                 <View style={styles.modalContainer}>
                     {modalContent}
                     <View>
-                        <Button title="Delete" onPress={() => { if (place !== null) onDelete(place) }} color="red" />
+                        <TouchableOpacity onPress={() => { if (place !== null) onDelete(place) }}>
+                            <View style={styles.deleteButton}>
+                                <Icon size={30} name="ios-trash" color="red"/>
+                            </View>
+                        </TouchableOpacity>
                         <Button title="Close" onPress={onClose} />
                     </View>
                 </View>
@@ -45,5 +50,8 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textAlign: "center",
         fontSize: 24
-    } as TextStyle
+    } as TextStyle,
+    deleteButton: {
+        alignItems: "center"
+    } as ViewStyle
 });
