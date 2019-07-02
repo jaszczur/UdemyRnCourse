@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from "react";
-import { ScrollView, StyleSheet, FlatList } from "react-native";
-import { ListItem } from "../ListItem/ListItem";
+import { FlatList, StyleSheet } from "react-native";
 import { Place } from "../../store/model";
+import { ListItem } from "../ListItem/ListItem";
 
 export interface PlaceListProps {
     items: Place[];
-    onItemPressed: (place: Place) => void;
+    onItemPressed: (placeId: Place) => void;
 };
 
 export const PlaceList: FunctionComponent<PlaceListProps> = (props: PlaceListProps) => {
