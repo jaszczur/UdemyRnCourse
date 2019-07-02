@@ -1,67 +1,47 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * 
- * Generated with the TypeScript template
- * https://github.com/emin93/react-native-template-typescript
- * 
- * @format
- */
+import React from "react";
+import { createAppContainer, createDrawerNavigator, createSwitchNavigator, DrawerViewConfig, NavigationRouteConfigMap, createMaterialTopTabNavigator, createBottomTabNavigator, NavigationScreenOptions, TabBarIconProps, BottomTabNavigatorConfig } from 'react-navigation';
+import { AuthScreen } from './screens/Auth/Auth';
+import { SharePlaceScreen } from './screens/SharePlace/SharePlace';
+import { FindPlaceScreen } from './screens/FindPlace/FindPlace';
+import Icon from "react-native-vector-icons/Ionicons";
 
-import React, { FunctionComponent } from 'react';
-import { StyleSheet, View, ViewStyle } from 'react-native';
-import { PlaceList } from './components/PlaceList/PlaceList';
-import { PlaceInput } from './components/PlaceInput/PlaceInput';
-import { Place,  ApplicationState } from './store/model';
-import placeImage from './assets/amazing04.jpg';
-import { PlaceDetails } from './components/PlaceDetails/PlaceDetails';
-import { useSelector, useDispatch } from "react-redux";
-import { ApplicationActionType, addPlace, selectPlace, deleteSelectedPlace, deselectPlace } from './store/actions';
-import { Dispatch } from 'redux';
+type AppTabBarIconProps = {iconName: string} & TabBarIconProps;
+const AppTabBarIcon = ({iconName, focused, horizontal, tintColor}: AppTabBarIconProps) => (
+  <Icon size={30} name={iconName} color={tintColor}/>
+);
 
-interface Props { }
+const MainTabs = createBottomTabNavigator({
+  FindPlace: {
+    screen: FindPlaceScreen,
+    navigationOptions: {
+      title: "Find place",
+      tabBarIcon: (props) => (
+        <AppTabBarIcon iconName="md-map" {...props}/>
+      ),
+    } as NavigationScreenOptions
+  },
+  SharePlace: {
+    screen: SharePlaceScreen,
+    navigationOptions: {
+      title: "Share place",
+      tabBarIcon: (props) => (
+        <AppTabBarIcon iconName="md-share" {...props}/>
+      )
+    } as NavigationScreenOptions
+  },
+  
+} as BottomTabNavigatorConfig);
 
-const App: FunctionComponent<Props> = (props: Props) => {
-  const dispatch: Dispatch<ApplicationActionType> = useDispatch();
-  const { places, selectedPlace } = useSelector((state: ApplicationState) => state.places);
+const RootNavigator = createSwitchNavigator({
+  Auth: { 
+    screen: AuthScreen,
+    navigationOptions: {
+      title: "Log in",
+    },
+  },
+  Main: MainTabs
+});
 
-  const handlePlaceSubmit = (placeName: string) => {
-    const newPlace = {
-      key: Math.random().toString(),
-      name: placeName,
-      image: placeImage
-    };
-    dispatch(addPlace(newPlace));
-  };
-
-  const handleItemPressed = (place: Place) => {
-    dispatch(selectPlace(place.key));
-  };
-
-  const handleItemDeleted = () => {
-    dispatch(deleteSelectedPlace());
-  };
-
-  const closeDetailsModal = () => {
-    dispatch(deselectPlace());
-  };
-
-  return (
-    <View style={styles.container}>
-      <PlaceDetails place={selectedPlace} onClose={closeDetailsModal} onDelete={handleItemDeleted} />
-      <PlaceInput onPlaceSubmit={handlePlaceSubmit} />
-      <PlaceList items={places} onItemPressed={handleItemPressed} />
-    </View>
-  );
-};
+const App = createAppContainer(RootNavigator);
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    padding: 20
-  } as ViewStyle,
-});
