@@ -1,11 +1,24 @@
-import React, { FunctionComponent } from "react";
-import { View, Text } from "react-native";
+import React from "react";
+import { Text, View } from "react-native";
+import { NavigationScreenProps } from "react-navigation";
+import { useSelector } from "react-redux";
+import { PlaceList } from "../../components/PlaceList/PlaceList";
+import { ApplicationState, Place } from "../../store/model";
+import { PlaceDetailsScreenNavigationParams } from "../PlaceDetails/PlaceDetails";
 
-export const FindPlaceScreen: FunctionComponent = () => {
- 
+export const FindPlaceScreen = ({navigation}: NavigationScreenProps) => {
+    const places = useSelector((state: ApplicationState) => state.places.places);
+
+    const handlePlacePressed = (place: Place) => {
+        navigation.push("PlaceDetails", {
+            placeId: place.key, 
+            placeName: place.name
+        } as PlaceDetailsScreenNavigationParams);
+    };
+    
     return (
         <View>
-            <Text>Find place</Text>
+            <PlaceList items={places} onItemPressed={handlePlacePressed}/>
         </View>
     );
 };

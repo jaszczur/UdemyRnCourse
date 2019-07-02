@@ -12,7 +12,6 @@ export type OptionalPlace = Place | null;
 
 export interface Places {
     places: Place[],
-    selectedPlace: OptionalPlace
 }
 
 export interface ApplicationState {
@@ -22,6 +21,5 @@ export interface ApplicationState {
 export const INITIAL_STATE: ApplicationState = {
     places: {
         places: [],
-        selectedPlace: null
     },
 };
