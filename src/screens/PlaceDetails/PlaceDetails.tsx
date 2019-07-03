@@ -20,7 +20,7 @@ export const PlaceDetailsScreen: FunctionComponent<PlaceDetailsScreenProps> =
         const dispatch = useDispatch();
         const onDelete = () => {
             dispatch(deletePlace(placeId));
-            navigation.goBack();
+            navigation.popToTop();
         };
 
         return place !== undefined ?
