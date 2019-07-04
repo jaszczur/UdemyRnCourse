@@ -13,6 +13,7 @@ const SHARE_PLACE_TITLE = "Share place";
 const HEADER_CONFIG = {
   defaultNavigationOptions: ({ navigation }) => ({
     headerLeft: (
+      if (navigation.)
       <NavigationButton onPress={() => navigation.openDrawer()} iconName="md-menu"/>
     )
   })
