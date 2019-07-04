@@ -28,7 +28,7 @@ deploy:
   provider: releases
   api_key:
     secure: KFyMv03VHSgLhI7kfRoJgiGFwSbi4r4vl7M6GLQDJLwRwjCA8FTGvivghyC4NYVPrGiuY814lS2+NAs+hhfj/1UcIe9YTvZ+GBp5u16SoD+bLVQyh7o/PsPUUdQDG/eNUr+OrekNIxa6C+JpbrxiFnpC2ovf5QmZLlsn8QTopt/19n53WXzaoW0t0NpPFT1znPLlVPNvZ9L/Hby/T/ceZa5zh5Bz9sZURN1C2HJHMZC6aA9wR9qHbP/Ap/xRaamsBUeqqxvT6iMwXHfziN08btmYHQORLaT3HEQUiCNNopyvOSr5la3q1kc61OmGSVJcivKGiHNaMaKmMAvpPyQzY0vg/q6+4Gzr73ug4TdDwDgaQVVILHwBiDVPkVFD0qigJSpUrqd5AscBbhmyY/5LS2IGZM7iwDGEotKe/AyRAa7RTg4WCf6NwQyoYjTyukSndlZFDc+lEGRJs84qSLJsJuwiJviAUzInyDAO/Vnqi4/w4V9QSLmaORqVGdJG1owwprLuskzt1QZ+znQtdnP9iZ3E+T97CWQVPkmTQ2js64QsvHTEv/8mDs3wrenIXsMmhj8kOFqr1fvt3NYiqZk0/sfG3pL37QIpAAaN0hfqmT5DoZP1dKl6ZL60dXgIZElpAQxFz2P6RIwl+GOZ/kPx21nKJozkw2wNpUEfbtMvNDE=
-  file: android/app/build/outputs/apk/release/app-release-unsigned.apk
+  file: ${TRAVIS_BUILD_DIR}/android/app/build/outputs/apk/release/app-release-unsigned.apk
   skip_cleanup: true
   draft: true
   on:
