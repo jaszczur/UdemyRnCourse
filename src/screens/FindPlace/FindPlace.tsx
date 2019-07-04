@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, Alert } from "react-native";
 import { NavigationScreenProps } from "react-navigation";
 import { useSelector } from "react-redux";
 import { PlaceList } from "../../components/PlaceList/PlaceList";
