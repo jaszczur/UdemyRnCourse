@@ -1,22 +1,17 @@
-/**
- * @format
- */
-
 import 'react-native';
+import renderer from 'react-test-renderer'; // Note: test renderer must be required after react-native.
 import React from 'react';
 import { Provider } from 'react-redux';
-import App from '../src/App';
 import configureStore from '../src/store/configureStore';
-
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+import { AuthScreen } from '../src/screens/Auth/Auth';
 
 const store = configureStore();
+const navigation = { navigate: jest.fn() } as any;
 
 it('renders correctly', () => {
   renderer.create(
     <Provider store={store}>
-      <App />
+      <AuthScreen navigation={navigation} />
     </Provider>
   );
 });
