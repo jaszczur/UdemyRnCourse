@@ -5,7 +5,7 @@ const rootReducer = combineReducers({
     places: placesReducer
 });
 
-const composeEnhancers = __DEV__ 
+const composeEnhancers = __DEV__ && typeof window !== "undefined"
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     : compose;
 

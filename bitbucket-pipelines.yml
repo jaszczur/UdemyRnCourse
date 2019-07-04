@@ -3,12 +3,17 @@
 # Only use spaces to indent your .yml configuration.
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
-image: eactnativecommunity/react-native-android
+image: reactnativecommunity/react-native-android
 
 pipelines:
   default:
     - step:
+        name: Build
         caches:
           - node
+          - gradle
         script:
           - yarn install
+          - yarn test
+          - cd android && chmod +x gradlew
+          - ./gradlew assembleRelease
