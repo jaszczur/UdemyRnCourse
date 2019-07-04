@@ -1,5 +1,5 @@
 import React from "react";
-import { createAppContainer, createDrawerNavigator, createSwitchNavigator, DrawerViewConfig, NavigationRouteConfigMap, createMaterialTopTabNavigator, createBottomTabNavigator, NavigationScreenOptions, TabBarIconProps, BottomTabNavigatorConfig, createStackNavigator, NavigationScreenConfigProps, DrawerIconProps, StackNavigatorConfig } from 'react-navigation';
+import { createAppContainer, createDrawerNavigator, createSwitchNavigator, NavigationScreenOptions, createStackNavigator, StackNavigatorConfig } from 'react-navigation';
 import { AuthScreen } from './screens/Auth/Auth';
 import { SharePlaceScreen } from './screens/SharePlace/SharePlace';
 import { FindPlaceScreen } from './screens/FindPlace/FindPlace';
@@ -13,7 +13,7 @@ const SHARE_PLACE_TITLE = "Share place";
 const HEADER_CONFIG = {
   defaultNavigationOptions: ({ navigation }) => ({
     headerLeft: (
-      if (navigation.)
+      // if (navigation.)
       <NavigationButton onPress={() => navigation.openDrawer()} iconName="md-menu"/>
     )
   })
