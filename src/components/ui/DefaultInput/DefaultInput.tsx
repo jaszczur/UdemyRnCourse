@@ -1,24 +1,28 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, TextInputProperties } from 'react-native';
+import { StyleSheet, TextInput, TextInputProperties, TextStyle } from 'react-native';
 
-export const DefaultInput: React.SFC<TextInputProperties> = (props) => {
-    const [inputStype, setInputStyle] = useState(styles.input);
+export type DefaultInputProps = TextInputProperties & {
+    focusedStyle?: TextStyle
+};
+
+export const DefaultInput: React.FunctionComponent<DefaultInputProps> = (props) => {
+    const [inputStyle, setInputStyle] = useState([styles.input, props.style]);
 
     const onFocus = () => {
-        setInputStyle(styles.focusedInput);
+        setInputStyle([styles.input, props.style, styles.focusedInput, props.focusedStyle]);
     }
 
     const onBlur = () => {
-        setInputStyle(styles.input);
+        setInputStyle([styles.input, props.style]);
     }
 
     return (
         <TextInput
-            style={inputStype}
             onFocus={onFocus}
             onBlur={onBlur}
             underlineColorAndroid="transparent"
-            {...props} />
+            {...props}
+            style={inputStyle} />
     );
 };
 
@@ -32,12 +36,7 @@ const styles = StyleSheet.create({
         margin: 8,
     },
     focusedInput: {
-        width: "100%",
-        borderWidth: 1,
         borderColor: "#1976d2",
-        borderRadius: 5,
-        padding: 5,
-        margin: 8,
     }
 });
 

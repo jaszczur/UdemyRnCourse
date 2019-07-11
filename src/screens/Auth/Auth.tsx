@@ -13,7 +13,7 @@ export const AuthScreen = ({ navigation }: NavigationScreenProps) => {
             <Text>Please log in</Text>
             <Button title="Switch to Log in" onPress={() => { }} />
             <View style={styles.inputContainer}>
-                <DefaultInput placeholder="E-mail"/>
+                <DefaultInput placeholder="E-mail" style={styles.input}/>
                 <DefaultInput placeholder="Password" />
                 <DefaultInput placeholder="Confirm password" />
             </View>
@@ -30,5 +30,9 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         width: "80%"
+    },
+    input: {
+        backgroundColor: "#eee",
+        borderColor: "#bbb",
     }
 });
