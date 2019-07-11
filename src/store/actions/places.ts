@@ -19,5 +19,16 @@ export const deletePlace = (placeId: PlaceId): DeletePlace => ({
     placeId
 });
 
+export interface PlaceImageFetched extends ApplicationAction {
+    type: ActionType.PLACE_IMAGE_FETCHED,
+    placeId: PlaceId,
+    imageUrl: string
+}
+export const placeImageFetched = (placeId: PlaceId, imageUrl: string): PlaceImageFetched => ({
+    type: ActionType.PLACE_IMAGE_FETCHED,
+    placeId,
+    imageUrl
+});
+
 export type PlacesActionType = 
-    AddPlace | DeletePlace;
+    AddPlace | DeletePlace | PlaceImageFetched;
