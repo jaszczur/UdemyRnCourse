@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
-import { View, Text, Button } from "react-native";
-import { PlaceInput } from "../../components/PlaceInput/PlaceInput";
+import { View } from "react-native";
 import { useDispatch } from "react-redux";
+import { PlaceInput } from "../../components/PlaceInput/PlaceInput";
 import { addPlace } from "../../store/actions";
 
 export const SharePlaceScreen: FunctionComponent = () => {

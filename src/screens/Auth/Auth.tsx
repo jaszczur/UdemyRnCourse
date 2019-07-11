@@ -1,10 +1,11 @@
 import React from "react";
-import { Button, StyleSheet, Text, View, ImageBackground } from "react-native";
+import { Alert, ImageBackground, StyleSheet, View } from "react-native";
 import { NavigationScreenProps } from "react-navigation";
+import backgroundImage from "../../assets/background.jpg";
+import { ButtonWithBackground } from "../../components/ui/ButtonWithBackground";
 import { DefaultInput } from "../../components/ui/DefaultInput";
 import { HeadingText } from "../../components/ui/HeadingText";
 
-import backgroundImage from "../../assets/background.jpg";
 
 export const AuthScreen = ({ navigation }: NavigationScreenProps) => {
     const handleLogIn = () => {
@@ -15,13 +16,17 @@ export const AuthScreen = ({ navigation }: NavigationScreenProps) => {
         <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
             <View style={styles.container}>
                 <HeadingText>Please log in</HeadingText>
-                <Button title="Switch to Log in" onPress={() => { }} />
+                <ButtonWithBackground color="#29aaf4" onPress={() => { Alert.alert("yo") }}>
+                    Switch to Log in
+                </ButtonWithBackground>
                 <View style={styles.inputContainer}>
                     <DefaultInput placeholder="E-mail" style={styles.input} />
                     <DefaultInput placeholder="Password" style={styles.input} />
                     <DefaultInput placeholder="Confirm password" style={styles.input} />
                 </View>
-                <Button title="Submit" onPress={handleLogIn} />
+                <ButtonWithBackground color="#29aaf4" onPress={handleLogIn}>
+                    Submit
+                </ButtonWithBackground>
             </View>
         </ImageBackground>
     );
