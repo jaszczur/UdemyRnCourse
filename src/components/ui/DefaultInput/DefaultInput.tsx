@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, TextInput, TextInputProperties, TextStyle } from 'react-native';
 
-export type DefaultInputProps = TextInputProperties & {
-    focusedStyle?: TextStyle
-};
-
 export const DefaultInput: React.FunctionComponent<DefaultInputProps> = (props) => {
     const [inputStyle, setInputStyle] = useState([styles.input, props.style]);
 

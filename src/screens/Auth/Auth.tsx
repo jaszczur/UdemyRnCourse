@@ -1,7 +1,8 @@
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { NavigationScreenProps } from "react-navigation";
-import { DefaultInput } from "../../components/ui/DefaultInput/DefaultInput";
+import { DefaultInput } from "../../components/ui/DefaultInput";
+import { HeadingText } from "../../components/ui/HeadingText";
 
 export const AuthScreen = ({ navigation }: NavigationScreenProps) => {
     const handleLogIn = () => {
@@ -10,7 +11,7 @@ export const AuthScreen = ({ navigation }: NavigationScreenProps) => {
 
     return (
         <View style={styles.container}>
-            <Text>Please log in</Text>
+            <HeadingText>Please log in</HeadingText>
             <Button title="Switch to Log in" onPress={() => { }} />
             <View style={styles.inputContainer}>
                 <DefaultInput placeholder="E-mail" style={styles.input}/>
