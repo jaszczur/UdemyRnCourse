@@ -19,6 +19,6 @@ export default function configureStore<S>(rootReducer: Reducer<S>, rootSaga: Sag
     enhancers.push(applyMiddleware(...middleware));
 
     const store = createStore(rootReducer, composeEnhancers(...enhancers));
-    sagaMiddleware.run(rootSaga, store, dispatchProvider);
+    sagaMiddleware.run(rootSaga, dispatchProvider);
     return store;
 };

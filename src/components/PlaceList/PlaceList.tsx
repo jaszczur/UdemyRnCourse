@@ -12,6 +12,7 @@ export const PlaceList: FunctionComponent<PlaceListProps> = (props: PlaceListPro
     return (
         <FlatList style={styles.listContainer}
             data={props.items}
+            keyExtractor={item => item.key}
             renderItem={(info) => (
                 <ListItem
                     place={info.item}

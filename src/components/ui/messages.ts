@@ -7,3 +7,9 @@ export function showMessage(msg: string) {
 export function showWarningMessage(msg: string) {
     showMessage(msg + " 😞");
 }
+
+export function showError(errId: number, msg?: string) {
+    if (__DEV__) {
+        showMessage(msg + ". Pass error id " + errId + " to our developers.");
+    }
+}
