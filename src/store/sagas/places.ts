@@ -1,15 +1,21 @@
 import { Image } from 'react-native';
-import { call, put, all, select } from 'redux-saga/effects';
+import { StackActions, NavigationActions } from 'react-navigation';
+import { all, call, put, select } from 'redux-saga/effects';
 import API from "../../api";
 import { showMessage } from '../../components/ui/messages';
-import { AddPlace, DeletePlace, placeDeleted, placeImageFetched, navigate } from '../actions';
-import { ApplicationState } from '../model';
-import { NavigationActions } from 'react-navigation';
+import { AddPlace, DeletePlace, navigate, placeImageFetched } from '../actions';
 import { findPlaceById } from '../selectors';
 
 
-export function* fetchPlaceImageSaga(action: AddPlace) {
+export function* placeAddedSaga(action: AddPlace) {
     try {
+        yield put(navigate(StackActions.push({
+            routeName: "NewPlaceDetails",
+            params: {
+                placeId: action.place.key,
+                placeName: action.place.name
+            }
+        })));
         const placeImageUrl = yield call(API.findPlaceImageUrl, action.place.name);
         yield call(Image.prefetch, placeImageUrl);
         yield put(placeImageFetched(action.place.key, placeImageUrl));
@@ -19,13 +25,10 @@ export function* fetchPlaceImageSaga(action: AddPlace) {
     }
 }
 
-export function* deletePlaceSaga(action: DeletePlace) {
+export function* placeDeletedSaga(action: DeletePlace) {
     // TODO: call api
-    const place = yield select(findPlaceById, action.placeId);
-    const placeName = typeof place === "undefined" ? "Somewhere" : place.name;
     yield all([
-        put(placeDeleted(action.placeId)),
-        put(navigate(NavigationActions.back())),
-        call(showMessage, "Place " + placeName + " has been deleted")
+        put(navigate(StackActions.popToTop({}))),
+        call(showMessage, "Place has been deleted")
     ]);
 }

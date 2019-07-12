@@ -1,20 +1,24 @@
 import React from "react";
 import { View } from "react-native";
-import { NavigationScreenProps } from "react-navigation";
 import { useSelector } from "react-redux";
 import { PlaceList } from "../../components/PlaceList/PlaceList";
 import { ApplicationState, Place } from "../../store/model";
 import { useNavigation } from "../../utils/navigation";
 import { PlaceDetailsScreenNavigationParams } from "../PlaceDetails/PlaceDetails";
+import { StackActions } from "react-navigation";
 
-export const FindPlaceScreen = ({ navigation }: NavigationScreenProps) => {
+export const FindPlaceScreen = () => {
     const places = useSelector((state: ApplicationState) => state.places.places);
+    const navigation = useNavigation();
 
     const handlePlacePressed = (place: Place) => {
-        navigation.push("PlaceDetails", {
-            placeId: place.key,
-            placeName: place.name
-        } as PlaceDetailsScreenNavigationParams);
+        navigation(StackActions.push({
+            routeName: "PlaceDetails",
+            params: {
+                placeId: place.key,
+                placeName: place.name
+            } as PlaceDetailsScreenNavigationParams
+        }));
     };
 
     return (

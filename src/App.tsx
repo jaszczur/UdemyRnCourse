@@ -56,6 +56,14 @@ const SharePlaceStack = createStackNavigator({
       title: SHARE_PLACE_TITLE,
     } as NavigationScreenOptions
   },
+  NewPlaceDetails: {
+    screen: PlaceDetailsScreen,
+    navigationOptions: ({ navigation }: PlaceDetailsScreenProps) => (
+      {
+        title: navigation.getParam("placeName")
+      }
+    )
+  }
 }, HEADER_CONFIG);
 
 const MainNavigation = createDrawerNavigator({

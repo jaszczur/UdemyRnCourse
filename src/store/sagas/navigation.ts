@@ -2,6 +2,7 @@ import { NavigationDispatch } from "react-navigation";
 import { call } from "redux-saga/effects";
 import { showError } from '../../components/ui/messages';
 import { Navigate } from "../actions";
+import { ErrorCode } from "../../errors";
 
 export type NavigationDispatchProvider = () => NavigationDispatch | null;
 
@@ -11,8 +12,6 @@ export function* navigateSaga(dispatchProvider: NavigationDispatchProvider, acti
         console.log("Navigating to " + JSON.stringify(action.action));
         yield call(dispatch, action.action);
     } else {
-        console.log("Navigation fail");
-        yield call(showError, "Ooops. Something went wrong.");
+        yield call(showError, 0x0001, "Navigation failed");
     }
 };
-

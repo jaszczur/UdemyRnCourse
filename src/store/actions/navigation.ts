@@ -1,15 +1,16 @@
 import { ActionType, ApplicationAction } from "./types";
-import { NavigationAction } from "react-navigation";
+import { NavigationAction, NavigationStackAction, NavigationDrawerAction } from "react-navigation";
 
+export type ReactNavigationAction = NavigationAction | NavigationStackAction | NavigationDrawerAction;
 export interface Navigate extends ApplicationAction {
     type: ActionType.NAVIGATE,
-    action: NavigationAction
+    action: ReactNavigationAction
 }
 
-export const navigate = (action: NavigationAction): Navigate => ({
+export const navigate = (action: ReactNavigationAction): Navigate => ({
     type: ActionType.NAVIGATE,
     action
 });
 
-export type NavigationActionType = 
+export type NavigationActionType =
     Navigate;
