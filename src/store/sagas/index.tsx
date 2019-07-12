@@ -1,25 +1,16 @@
-import { all, takeEvery, call, put } from 'redux-saga/effects';
-import { Saga } from 'redux-saga';
+import { Store } from 'redux';
+import { all, takeEvery } from 'redux-saga/effects';
 import { ActionType } from '../actions/types';
-import { Action } from 'redux';
-import { AddPlace, placeImageFetched } from '../actions';
-import API from "../../api";
-import { Image } from 'react-native';
+import { ApplicationState } from '../model';
+import { deletePlace, fetchPlaceImage } from './places';
+import { navigate, NavigationDispatchProvider } from './navigation';
 
-
-function* fetchPlaceImage(action: AddPlace) {
-    try {
-        const placeImageUrl = yield call(API.findPlaceImageUrl, action.place.name);
-        yield call(Image.prefetch, placeImageUrl);5
-        yield put(placeImageFetched(action.place.key, placeImageUrl));
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-export default function* rootSaga() {
+export default function* rootSaga(store: Store<ApplicationState>, dispatchProvider: NavigationDispatchProvider) {
     yield all([
         takeEvery(ActionType.ADD_PLACE, fetchPlaceImage),
+        takeEvery(ActionType.DELETE_PLACE, deletePlace, () => store.getState()),
+
+        takeEvery(ActionType.NAVIGATE, navigate, dispatchProvider),
         //   // some sagas only receive an action
         //   takeLatest(StartupTypes.STARTUP, startup),
 

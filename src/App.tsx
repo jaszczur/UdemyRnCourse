@@ -1,5 +1,5 @@
-import React from "react";
-import { createAppContainer, createDrawerNavigator, createSwitchNavigator, NavigationScreenOptions, createStackNavigator, StackNavigatorConfig } from 'react-navigation';
+import React, { useState } from "react";
+import { createAppContainer, createDrawerNavigator, createSwitchNavigator, NavigationScreenOptions, createStackNavigator, StackNavigatorConfig, withNavigation, NavigationContainerComponent } from 'react-navigation';
 import { AuthScreen } from './screens/Auth/Auth';
 import { SharePlaceScreen } from './screens/SharePlace/SharePlace';
 import { FindPlaceScreen } from './screens/FindPlace/FindPlace';
@@ -8,6 +8,8 @@ import { CustomDrawerContentComponent } from "./components/CustomDrawerContent/C
 import { navigationIconProvider } from "./components/NavigationIcon/NavigationIcon";
 import { NavigationButton } from "./components/NavigationButton/NavigationButton";
 import { useScreens } from 'react-native-screens';
+import configureStore from "./store";
+import { Provider } from "react-redux";
 
 useScreens();
 
@@ -87,6 +89,26 @@ const RootNavigator = createSwitchNavigator({
   Main: MainNavigation
 });
 
-const App = createAppContainer(RootNavigator);
+// const App = createAppContainer(RootNavigator);
+
+// const RNRedux = () => (
+//     <Provider store={store}>
+//         <App />
+//     </Provider>
+// );
+
+// export default RNRedux;
+
+const App: React.FunctionComponent = () => {
+  let navigator: NavigationContainerComponent | null = null;
+  const store = configureStore(() => navigator === null ? null : navigator.dispatch);
+  const AppContainer = createAppContainer(RootNavigator);
+
+  return (
+    <Provider store={store}>
+      <AppContainer ref={nav => navigator = nav} />
+    </Provider>
+  );
+};
 
 export default App;

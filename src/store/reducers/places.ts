@@ -1,6 +1,6 @@
 import { INITIAL_STATE, Places, Place } from "../model";
 import { ActionType } from "../actions/types";
-import { ApplicationActionType, AddPlace, DeletePlace, PlaceImageFetched, } from "../actions";
+import { ApplicationActionType, AddPlace, DeletePlace, PlaceImageFetched, PlaceDeleted, } from "../actions";
 
 const reduceAddPlace = (state: Places, action: AddPlace) => (
     {
@@ -9,7 +9,7 @@ const reduceAddPlace = (state: Places, action: AddPlace) => (
     }
 );
 
-const reduceDeletePlace = (state: Places, action: DeletePlace) => {
+const reducePlaceDeleted = (state: Places, action: PlaceDeleted) => {
     return {
         ...state,
         places: state.places.filter(place => place.key !== action.placeId),
@@ -42,8 +42,8 @@ const reducer = (state: Places = INITIAL_STATE.places, action: ApplicationAction
         case ActionType.ADD_PLACE:
             return reduceAddPlace(state, action);
 
-        case ActionType.DELETE_PLACE:
-            return reduceDeletePlace(state, action);
+        case ActionType.PLACE_DELETED:
+            return reducePlaceDeleted(state, action);
 
         case ActionType.PLACE_IMAGE_FETCHED:
             return reducePlaceImageFetched(state, action);
