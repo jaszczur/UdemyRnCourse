@@ -1,17 +1,17 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { DefaultButton } from "../ui/DefaultButton";
-import { ImagePickerProps } from "./ImagePicker.props";
+import { PlacePickerProps } from "./PlacePicker.props";
 
-export const ImagePicker = (props: ImagePickerProps) => {
-    const pickImage = () => { };
+export const PlacePicker = (props: PlacePickerProps) => {
+    const locateMe = () => { };
 
     return (
         <View style={styles.container}>
             <View style={styles.placeholder}>
-                <Image source={require("../../assets/amazing04.jpg")} style={styles.imagePreview} />
+                <Text>Jestę mapą</Text>
             </View>
-            <DefaultButton title="Pick image" onPress={pickImage} />
+            <DefaultButton title="Locate me" onPress={locateMe} />
         </View>
     );
 };

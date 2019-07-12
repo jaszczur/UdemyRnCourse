@@ -1,41 +1,49 @@
-import React, { FunctionComponent } from "react";
-import { Button, StyleSheet, Text, View, Image } from "react-native";
+import React, { FunctionComponent, useState } from "react";
+import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-navigation";
-import { DefaultInput } from "../../components/ui/DefaultInput";
-import { HeadingText } from "../../components/ui/HeadingText";
+import { useDispatch } from "react-redux";
+import { ImagePicker } from "../../components/ImagePicker";
+import { PlacePicker } from "../../components/PlacePicker";
 import { DefaultButton } from "../../components/ui/DefaultButton";
+import { HeadingText } from "../../components/ui/HeadingText";
+import { addPlace } from "../../store/actions";
+import { PlaceInput } from "../../components/PlaceInput/PlaceInput";
+import { DefaultInput } from "../../components/ui/DefaultInput";
+import { showMessage } from "../../components/ui/messages";
 
 export const SharePlaceScreen: FunctionComponent = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const [placeName, setPlaceName] = useState("");
 
-    // const handlePlaceAdded = (placeName: string) => {
-    //     dispatch(addPlace({
-    //         name: placeName,
-    //         key: Math.random().toString(),
-    //         image: require("../../assets/amazing04.jpg")
-    //     }))
-    // };
-
-    const pickImage = () => { };
     const locateMe = () => { };
-    const shareThePlace = () => { };
+    const shareThePlace = () => {
+        const trimmedPlaceName = placeName.trim();
+        if (trimmedPlaceName === "") {
+            showMessage("Place name cannot be empty 😝");
+            return;
+        }
+        
+        dispatch(addPlace({
+            name: trimmedPlaceName,
+            key: Math.random().toString(),
+            image: require("../../assets/amazing04.jpg")
+        }));
+        setPlaceName("");
+     };
 
     return (
         <ScrollView>
             <View style={styles.container}>
                 <HeadingText>Share a place with us!</HeadingText>
+                <ImagePicker />
+                <PlacePicker />
 
-                <View style={styles.placeholder}>
-                    <Image source={require("../../assets/amazing04.jpg")} style={styles.imagePreview}/>
-                </View>
-                <DefaultButton title="Pick image" onPress={pickImage} />
-
-                <View style={styles.placeholder}>
-                    <Text>Map</Text>
-                </View>
-                <DefaultButton title="Locate me" onPress={locateMe} />
-
-                <DefaultInput placeholder="Place name" />
+                <DefaultInput
+                    placeholder="Place name"
+                    value={placeName}
+                    onChangeText={setPlaceName}
+                    onSubmitEditing={shareThePlace} />
+                
                 <DefaultButton title="Share the place" onPress={shareThePlace} />
             </View>
         </ScrollView>
