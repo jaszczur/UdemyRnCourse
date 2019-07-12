@@ -1,10 +1,9 @@
 import { Image } from 'react-native';
-import { StackActions, NavigationActions } from 'react-navigation';
-import { all, call, put, select } from 'redux-saga/effects';
+import { StackActions } from 'react-navigation';
+import { all, call, put } from 'redux-saga/effects';
 import API from "../../api";
 import { showMessage } from '../../components/ui/messages';
 import { AddPlace, DeletePlace, navigate, placeImageFetched } from '../actions';
-import { findPlaceById } from '../selectors';
 
 
 export function* placeAddedSaga(action: AddPlace) {
