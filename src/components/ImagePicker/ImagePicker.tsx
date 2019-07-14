@@ -2,9 +2,12 @@ import React from "react";
 import { View, Image, StyleSheet } from "react-native";
 import { DefaultButton } from "../ui/DefaultButton";
 import { ImagePickerProps } from "./ImagePicker.props";
+import { showMessage } from "../ui/messages";
 
 export const ImagePicker = (props: ImagePickerProps) => {
-    const pickImage = () => { };
+    const pickImage = () => { 
+        showMessage("Not implemented yet");
+    };
 
     return (
         <View style={styles.container}>

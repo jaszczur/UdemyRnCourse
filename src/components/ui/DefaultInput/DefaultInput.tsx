@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, TextInputProperties, TextStyle } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
+import { DefaultInputProps } from './DefaultInput.props';
 
 export const DefaultInput: React.FunctionComponent<DefaultInputProps> = (props) => {
     const [inputStyle, setInputStyle] = useState([styles.input, props.style]);

@@ -15,7 +15,6 @@ export const SharePlaceScreen: FunctionComponent = () => {
     const dispatch = useDispatch();
     const [placeName, setPlaceName] = useState("");
 
-    const locateMe = () => { };
     const shareThePlace = () => {
         const trimmedPlaceName = placeName.trim();
         if (trimmedPlaceName === "") {
@@ -37,13 +36,7 @@ export const SharePlaceScreen: FunctionComponent = () => {
                 <HeadingText>Share a place with us!</HeadingText>
                 <ImagePicker />
                 <PlacePicker />
-
-                <DefaultInput
-                    placeholder="Place name"
-                    value={placeName}
-                    onChangeText={setPlaceName}
-                    onSubmitEditing={shareThePlace} />
-                
+                <PlaceInput placeName={placeName} onPlaceNameChanged={setPlaceName} />
                 <DefaultButton title="Share the place" onPress={shareThePlace} />
             </View>
         </ScrollView>

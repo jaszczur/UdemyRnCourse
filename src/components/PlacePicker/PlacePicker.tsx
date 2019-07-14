@@ -2,9 +2,12 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { DefaultButton } from "../ui/DefaultButton";
 import { PlacePickerProps } from "./PlacePicker.props";
+import { showMessage } from "../ui/messages";
 
 export const PlacePicker = (props: PlacePickerProps) => {
-    const locateMe = () => { };
+    const locateMe = () => {
+        showMessage("Not implemented yet");
+     };
 
     return (
         <View style={styles.container}>
