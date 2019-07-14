@@ -1,10 +1,11 @@
 import React from "react";
-import { Alert, ImageBackground, StyleSheet, View } from "react-native";
+import { ImageBackground, StyleSheet, View } from "react-native";
 import { NavigationScreenProps } from "react-navigation";
 import backgroundImage from "../../assets/background.jpg";
 import { ButtonWithBackground } from "../../components/ui/ButtonWithBackground";
 import { DefaultInput } from "../../components/ui/DefaultInput";
 import { HeadingText } from "../../components/ui/HeadingText";
+import { showMessage } from "../../components/ui/messages";
 
 
 export const AuthScreen = ({ navigation }: NavigationScreenProps) => {
@@ -16,7 +17,7 @@ export const AuthScreen = ({ navigation }: NavigationScreenProps) => {
         <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
             <View style={styles.container}>
                 <HeadingText>Please log in</HeadingText>
-                <ButtonWithBackground color="#29aaf4" onPress={() => { Alert.alert("yo") }}>
+                <ButtonWithBackground color="#29aaf4" onPress={() => { showMessage("todo") }}>
                     Switch to Log in
                 </ButtonWithBackground>
                 <View style={styles.inputContainer}>
@@ -27,6 +28,7 @@ export const AuthScreen = ({ navigation }: NavigationScreenProps) => {
                 <ButtonWithBackground color="#29aaf4" onPress={handleLogIn}>
                     Submit
                 </ButtonWithBackground>
+                
             </View>
         </ImageBackground>
     );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createAppContainer, createDrawerNavigator, createSwitchNavigator, NavigationScreenOptions, createStackNavigator, StackNavigatorConfig, withNavigation, NavigationContainerComponent } from 'react-navigation';
+import { createAppContainer, createDrawerNavigator, createSwitchNavigator, NavigationScreenOptions, createStackNavigator, StackNavigatorConfig, withNavigation, NavigationContainerComponent, createBottomTabNavigator } from 'react-navigation';
 import { AuthScreen } from './screens/Auth/Auth';
 import { SharePlaceScreen } from './screens/SharePlace/SharePlace';
 import { FindPlaceScreen } from './screens/FindPlace/FindPlace';
@@ -7,11 +7,8 @@ import { PlaceDetailsScreen, PlaceDetailsScreenProps } from "./screens/PlaceDeta
 import { CustomDrawerContentComponent } from "./components/CustomDrawerContent/CustomDrawerContent";
 import { navigationIconProvider } from "./components/NavigationIcon/NavigationIcon";
 import { NavigationButton } from "./components/NavigationButton/NavigationButton";
-import { useScreens } from 'react-native-screens';
 import configureStore from "./store";
 import { Provider } from "react-redux";
-
-useScreens();
 
 const FIND_PLACE_TITLE = "Find place";
 const SHARE_PLACE_TITLE = "Share place";
@@ -66,12 +63,12 @@ const SharePlaceStack = createStackNavigator({
   }
 }, HEADER_CONFIG);
 
-const MainNavigation = createDrawerNavigator({
+const MainNavigation = createBottomTabNavigator({
   SharePlace: {
     screen: SharePlaceStack,
     navigationOptions: {
       title: SHARE_PLACE_TITLE,
-      drawerIcon: navigationIconProvider("md-share"),
+      tabBarIcon: navigationIconProvider("md-share"),
     } as NavigationScreenOptions
   },
 
@@ -79,9 +76,15 @@ const MainNavigation = createDrawerNavigator({
     screen: FindPlaceStack,
     navigationOptions: {
       title: FIND_PLACE_TITLE,
-      drawerIcon: navigationIconProvider("md-map"),
+      tabBarIcon: navigationIconProvider("md-map"),
     } as NavigationScreenOptions
   },
+});
+
+const DrawerNavigation = createDrawerNavigator({
+  MainNavigation: {
+    screen: MainNavigation,
+  }
 },
   {
     contentComponent: CustomDrawerContentComponent
@@ -94,7 +97,7 @@ const RootNavigator = createSwitchNavigator({
       title: "Log in",
     },
   },
-  Main: MainNavigation
+  Main: DrawerNavigation
 });
 
 // const App = createAppContainer(RootNavigator);

@@ -1,8 +1,9 @@
 import React from "react";
+import { StyleSheet, Text, TextStyle, View, ViewStyle } from "react-native";
 import { ScrollView, TouchableNativeFeedback } from "react-native-gesture-handler";
-import { SafeAreaView, DrawerItems, DrawerItemsProps } from "react-navigation";
-import { StyleSheet, View, Text, TextStyle, TouchableHighlight } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
+import { DrawerItemsProps, SafeAreaView } from "react-navigation";
+import { showMessage } from "../ui/messages";
 
 export const CustomDrawerContentComponent = (props: DrawerItemsProps) => {
     const onBackButtonPressed = () => {
@@ -13,11 +14,18 @@ export const CustomDrawerContentComponent = (props: DrawerItemsProps) => {
             <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
                 <View style={styles.topBar}>
                     <Text style={styles.header}>Awesome Places</Text>
-                    <TouchableNativeFeedback style={styles.backButton} onPress={onBackButtonPressed}>
+                    <TouchableNativeFeedback style={styles.backButton} onPress={onBackButtonPressed} useForeground={true}>
                         <Icon name="md-arrow-dropleft" size={30} />
                     </TouchableNativeFeedback>
                 </View>
-                <DrawerItems {...props} />
+
+                {/* <DrawerItems {...props} /> */}
+
+                <TouchableNativeFeedback onPress={() => showMessage("TODO")} style={styles.drawerItem} useForeground={true}>
+                    <Icon name="md-log-out" size={30} color="#aaa" style={styles.drawerItemIcon} />
+                    <Text>Sign out</Text>
+                </TouchableNativeFeedback>
+
             </SafeAreaView>
         </ScrollView>
     );
@@ -38,6 +46,15 @@ const styles = StyleSheet.create({
         width: 40,
         justifyContent: "center",
         alignItems: "center"
+    },
+    drawerItem: {
+        flexDirection: "row",
+        alignItems: "center",
+        padding: 10,
+        backgroundColor: "#eee"
+    } as ViewStyle,
+    drawerItemIcon: {
+        marginRight: 10
     },
     header: {
         fontSize: 20,
