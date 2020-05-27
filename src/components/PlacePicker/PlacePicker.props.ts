@@ -1,3 +1,1 @@
-export interface PlacePickerProps {
-    
-};
+export interface PlacePickerProps {}

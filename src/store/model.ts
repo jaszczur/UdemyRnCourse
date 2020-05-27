@@ -1,25 +1,25 @@
-import { ImageSourcePropType } from "react-native";
+import { ImageSourcePropType } from 'react-native';
 
 export type PlaceId = string;
 
 export interface Place {
-    key: PlaceId,
-    name: string,
-    image: ImageSourcePropType
+  key: PlaceId;
+  name: string;
+  image: ImageSourcePropType;
 }
 
 export type OptionalPlace = Place | null;
 
 export interface Places {
-    places: Place[],
+  places: Place[];
 }
 
 export interface ApplicationState {
-    places: Places
+  places: Places;
 }
 
 export const INITIAL_STATE: ApplicationState = {
-    places: {
-        places: [],
-    },
+  places: {
+    places: [],
+  },
 };

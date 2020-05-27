@@ -1,2 +1,2 @@
-export * from "./DefaultInput";
-export * from "./DefaultInput.props";
+export * from './DefaultInput';
+export * from './DefaultInput.props';

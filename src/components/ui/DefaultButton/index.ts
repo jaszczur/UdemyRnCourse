@@ -1,2 +1,2 @@
-export * from "./DefaultButton";
-export * from "./DefaultButton.props";
+export * from './DefaultButton';
+export * from './DefaultButton.props';

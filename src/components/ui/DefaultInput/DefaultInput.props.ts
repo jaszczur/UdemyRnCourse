@@ -1,5 +1,5 @@
-import { TextInputProps, TextStyle } from "react-native";
+import { TextInputProps, TextStyle } from 'react-native';
 
 export type DefaultInputProps = TextInputProps & {
-    focusedStyle?: TextStyle
+  focusedStyle?: TextStyle;
 };
