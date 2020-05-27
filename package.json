@@ -5,6 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
+    "test:ci": "jest --ci --coverage",
+    "test:watch": "jest --watch --coverage",
     "android": "react-native run-android"
   },
   "dependencies": {
@@ -29,11 +31,17 @@
     "@types/react-test-renderer": "^16.8.1",
     "babel-jest": "^24.8.0",
     "jest": "^24.8.0",
+    "jest-sonar-reporter": "^2.0.0",
     "metro-react-native-babel-preset": "^0.54.1",
     "react-test-renderer": "16.8.3",
     "typescript": "^3.5.1"
   },
   "jest": {
     "preset": "react-native"
+  },
+  "jestSonar": {
+    "reportPath": "coverage",
+    "reportFile": "test-report.xml",
+    "indent": 2
   }
 }
