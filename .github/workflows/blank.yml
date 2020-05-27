@@ -36,3 +36,19 @@ jobs:
     - name: Verify
       run: |
         yarn test:ci
+
+    - name: Sonar Scanner
+      run: |
+        export SONAR_SCANNER_VERSION=4.2.0.1873
+        export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
+        curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+        unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+        export PATH=$SONAR_SCANNER_HOME/bin:$PATH
+        export SONAR_SCANNER_OPTS="-server"
+
+        sonar-scanner \
+            -Dsonar.organization=jaszczur \
+            -Dsonar.projectKey=jaszczur_UdemyRnCourse \
+            -Dsonar.sources=. \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=33cf4199c23124d6b0193ab65c4371253e60e2f9
