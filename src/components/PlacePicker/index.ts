@@ -1,2 +1,2 @@
-export * from "./PlacePicker";
-export * from "./PlacePicker.props";
+export * from './PlacePicker';
+export * from './PlacePicker.props';

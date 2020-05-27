@@ -1,2 +1,2 @@
-export * from "./HeadingText";
-export * from "./HeadingText.props";
+export * from './HeadingText';
+export * from './HeadingText.props';

@@ -1,2 +1,2 @@
-export * from "./ButtonWithBackground";
-export * from "./ButtonWithBackground.props";
+export * from './ButtonWithBackground';
+export * from './ButtonWithBackground.props';
