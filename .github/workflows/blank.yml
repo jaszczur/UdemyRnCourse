@@ -38,6 +38,8 @@ jobs:
         yarn test:ci
 
     - name: Sonar Scanner
+      env:
+        SONAR_SCANNER_LOGIN: ${{ secrets.SONAR_SCANNER_LOGIN }}
       run: |
         export SONAR_SCANNER_VERSION=4.2.0.1873
         export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
@@ -51,4 +53,4 @@ jobs:
             -Dsonar.projectKey=jaszczur_UdemyRnCourse \
             -Dsonar.sources=. \
             -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=33cf4199c23124d6b0193ab65c4371253e60e2f9
+            -Dsonar.login=$SONAR_SCANNER_LOGIN
